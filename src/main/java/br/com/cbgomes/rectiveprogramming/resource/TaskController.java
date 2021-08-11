@@ -8,33 +8,36 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-    @RestController
-    @RequestMapping("/api/task")
-    public class TaskController {
+/**
+ * Class control to my ms - TaskController
+ */
+@RestController
+@RequestMapping("/api/task")
+public class TaskController {
 
-        private final TaskService service;
+    private final TaskService service;
 
-        public TaskController(TaskService service){
-            this.service = service;
-        }
-
-        @PostMapping("/create")
-        public Mono<Task> create(@RequestBody Task task) {
-            return this.service.save(task);
-        }
-
-        @GetMapping("/tasks")
-        public Flux<Task> list(){
-            return this.service.list();
-        }
-
-        @GetMapping("/{id}")
-        public Mono<Task> getById(@PathVariable("id") Long id){
-            return this.service.getTask(id);
-        }
-
-        @DeleteMapping
-        public Mono<Void> remove(@RequestParam("id") Long id){
-           return this.service.remove(id);
-        }
+    public TaskController(TaskService service){
+        this.service = service;
     }
+
+    @PostMapping("/create")
+    public Mono<Task> create(@RequestBody Task task) {
+        return this.service.save(task);
+    }
+
+    @GetMapping("/tasks")
+    public Flux<Task> list(){
+        return this.service.list();
+    }
+
+    @GetMapping("/{id}")
+    public Mono<Task> getById(@PathVariable("id") Long id){
+        return this.service.getTask(id);
+    }
+
+    @DeleteMapping
+    public Mono<Void> remove(@RequestParam("id") Long id){
+       return this.service.remove(id);
+    }
+}

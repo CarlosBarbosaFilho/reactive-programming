@@ -34,8 +34,7 @@ import reactor.core.publisher.Mono;
         }
 
         @DeleteMapping
-        @ResponseStatus( HttpStatus.NO_CONTENT)
-        public void remove(@RequestParam("id") Long id){
-            this.service.remove(id);
+        public Mono<Void> remove(@RequestParam("id") Long id){
+           return this.service.remove(id);
         }
     }

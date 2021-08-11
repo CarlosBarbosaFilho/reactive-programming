@@ -27,7 +27,7 @@ public class TaskService {
         return this.repository.findById(id);
     }
 
-    public void remove(Long id) {
-        this.repository.deleteById(id);
+    public Mono<Void> remove(Long id) {
+        return this.repository.deleteById(id);
     }
 }
